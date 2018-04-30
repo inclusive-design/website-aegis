@@ -1,0 +1,1513 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="Content-Type">
+<title>ARIA Roles, States, and Events</title>
+<STYLE type="text/css">
+<!--
+.support { background-color: #99FF99 }
+.nosupport { background-color: #FFCCCC }
+.partialsupport { background-color: #FFFF99 }
+.notest { background-color: #99FFFF }
+.error { background-color: #FFCC66 }
+-->
+</STYLE>
+</head>
+
+<body>
+
+<!-- div tags are because I was trying to add in aria landmark roles, but the code won't validate with the roles so I've taken them out for now
+<div id="page">
+<div id="header" class="jsariadocumentlandmark" role="banner">
+-->
+
+<h1>ARIA roles and states and MSAA events exposed via MSAA by browsers on Windows - IE 8, Firefox 3, Opera 10, Chrome 5, and Safari 5</h1>
+<p>
+Author: Phil Richards<br>
+Contact: <a href="mailto:phrichards@gmail.com">phrichards@gmail.com</a>
+</p>
+
+<!--
+</div>
+<div id="content" class="widecolumn jsariadocumentlandmark" role="main">
+-->
+
+<h2>Roles &amp; Inspect 32</h2>
+<p>
+These tests are updates of those performed by Steve Faulkner, detailed at <a href="http://www.paciellogroup.com/blog/aria-tests/ARIA-SafariaOperaIEFF.html">The Paciello Group Blog</a>.  As all five of the browsers tested by Steve have been updated since those tests were performed, these tests were conducted with the latest version of each browser, specifically:
+</p>
+<ul>
+<li>Internet Explorer 8.0.6</li>
+<li>Firefox 3.6.3</li>
+<li>Opera 10.53</li>
+<li>Chrome 5.0.375.55</li>
+<li>Safari 5.0</li>
+</ul>
+<p>
+Test methodology for ARIA roles exposed by MSAA was identical to the methodology used in Steve's tests, and the expected MSAA roles presented here are taken from Steve's tests.  The Inspect 32 software used to conduct these tests is available <a href="http://www.microsoft.com/downloads/details.aspx?familyid=3755582a-a707-460a-bf21-1373316e13f0&amp;displaylang=en">here</a>.  
+</p>
+<p>The updated summary is as follows:
+</p>
+<p>WAI-ARIA has 59 possible role values (excluding abstract roles):
+</p>
+<ul>
+<li>IE 8.0.6 exposes 40 role values via MSAA</li>
+<li>Firefox 3.6.3 exposes 45 role values via MSAA</li>
+<li>Opera 10.53 exposes 22 role values via MSAA</li>
+<li>Chrome exposes 4 role values via MSAA</li>
+<li>Safari 5.0 exposes 4 role values via MSAA</li>
+</ul>
+<p>
+The current versions of IE, Firefox, and Safari perform slightly poorer than the versions used in Steve's tests, while Opera and Chrome perform slightly better.  There are no dramatic changes in performance for any browser.
+</p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">ARIA Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Expected MSAA Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">IE 8.0.6 Reported Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Firefox 3.6.3 Reported Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Opera 10.53 Reported Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Chrome 5.0.375.55 Reported Role</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Safari 5.0 Reported Role</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">alert</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">alert</span></td>
+      <td class="support">alert</td>
+      <td class="support">alert</td>
+      <td class="support">alert</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">alertdialog</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">dialog</span></td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">application</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">application</span></td>
+      <td class="partialsupport">pane</td>
+      <td class="support">application</td>
+      <td class="support">application</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">article</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">None</span></td>
+      <td class="nosupport">cell</td>
+      <td class="partialsupport">document</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">banner</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">None</span></td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">button</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">push button</span></td>
+      <td class="support">push button</td>
+      <td class="support">push button</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">checkbox</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">check box</span></td>
+      <td class="support">check box</td>
+      <td class="support">check box</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">columnheader</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">column header</span></td>
+      <td class="support">column header</td>
+      <td class="support">column header</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">combobox</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">combo box</span></td>
+      <td class="support">combo box</td>
+      <td class="support">combo box</td>
+      <td class="support">combo box</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">complementary</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">None</span></td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">contentinfo</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">None</span></td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">definition</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">None</span></td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">dialog</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">dialog</span></td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">directory</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">list</span></td>
+      <td class="support">list</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">unknown object</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">document</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">client</span></td>
+      <td class="support">client</td>
+      <td class="support">document</td>
+      <td class="nosupport">unknown object</td>
+      <td class="nosupport">cell</td>
+      <td class="support">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">grid</td>
+      <td style="vertical-align: top; font-weight: bold;">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">gridcell</td>
+      <td style="vertical-align: top; font-weight: bold;">cell</td>
+      <td class="support">cell</td>
+      <td class="support">cell</td>
+      <td class="support">cell</td>
+      <td class="support">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">group</td>
+      <td style="vertical-align: top; font-weight: bold;">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">heading</td>
+      <td style="vertical-align: top; font-weight: bold;">text? heading?</td>
+      <td class="support">editable text</td>
+      <td class="support">heading</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">img</td>
+      <td style="vertical-align: top; font-weight: bold;">graphic</td>
+      <td class="support">graphic</td>
+      <td class="support">graphic</td>
+      <td class="support">graphic</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">label</td>
+      <td style="vertical-align: top; font-weight: bold;">text</td>
+      <td class="nosupport">cell</td>
+      <td class="support">text</td>
+      <td class="support">text</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">link</td>
+      <td style="vertical-align: top; font-weight: bold;">link</td>
+      <td class="support">link</td>
+      <td class="support">link</td>
+      <td class="support">link</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">listbox</td>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">listitem</td>
+      <td style="vertical-align: top; font-weight: bold;">list item</td>
+      <td class="support">list item</td>
+      <td class="support">list item</td>
+      <td class="support">list item</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">log</td>
+      <td style="vertical-align: top; font-weight: bold;">log?</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">unknown object</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">main</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">marquee</td>
+      <td style="vertical-align: top; font-weight: bold;">animation? marquee?</td>
+      <td class="support">animation</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">math</td>
+      <td style="vertical-align: top; font-weight: bold;">equation?</td>
+      <td class="nosupport">cell</td>
+      <td class="support">equation</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menu</td>
+      <td style="vertical-align: top; font-weight: bold;">pop up menu</td>
+      <td class="support">popup menu</td>
+      <td class="support">popup menu</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menubar</td>
+      <td style="vertical-align: top; font-weight: bold;">menu bar</td>
+      <td class="support">menu bar</td>
+      <td class="support">menu bar</td>
+      <td class="support">menu bar</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitem</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menu item</td>
+      <td class="support">menu item</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitemcheckbox</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menu item</td>
+      <td class="support">menu item</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitemradio</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menu item</td>
+      <td class="support">menu item</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">navigation</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">note</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">option</td>
+      <td style="vertical-align: top; font-weight: bold;">list item</td>
+      <td class="support">list item</td>
+      <td class="support">list item</td>
+      <td class="support">list item</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">presentation</td>
+      <td style="vertical-align: top; font-weight: bold;">no object exposed</td>
+      <td class="nosupport">Error</td>
+      <td class="support">presentation</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">progressbar</td>
+      <td style="vertical-align: top; font-weight: bold;">progress bar</td>
+      <td class="support">progress bar</td>
+      <td class="support">progress bar</td>
+      <td class="support">progress bar</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">radio</td>
+      <td style="vertical-align: top; font-weight: bold;">radio button</td>
+      <td class="support">radio button</td>
+      <td class="support">radio button</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">radiogroup</td>
+      <td style="vertical-align: top; font-weight: bold;">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">row</td>
+      <td style="vertical-align: top; font-weight: bold;">row</td>
+      <td class="nosupport">cell</td>
+      <td class="support">row</td>
+      <td class="nosupport">list item</td>
+      <td class="support">row</td>
+      <td class="support">row</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">region</td>
+      <td style="vertical-align: top; font-weight: bold;">pane?</td>
+      <td class="partialsupport">pane</td>
+      <td class="partialsupport">grouping</td>
+      <td class="nosupport">unknown object</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">rowheader</td>
+      <td style="vertical-align: top; font-weight: bold;">row header</td>
+      <td class="support">row header</td>
+      <td class="support">row header</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">search</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">separator</td>
+      <td style="vertical-align: top; font-weight: bold;">separator</td>
+      <td class="support">separator</td>
+      <td class="support">separator</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">slider</td>
+      <td style="vertical-align: top; font-weight: bold;">slider</td>
+      <td class="support">slider</td>
+      <td class="support">slider</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">spinbutton</td>
+      <td style="vertical-align: top; font-weight: bold;">spin box</td>
+      <td class="support">spin box</td>
+      <td class="support">spin box</td>
+      <td class="nosupport">progress bar</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">status</td>
+      <td style="vertical-align: top; font-weight: bold;">status bar</td>
+      <td class="support">status bar</td>
+      <td class="support">status bar</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tab</td>
+      <td style="vertical-align: top; font-weight: bold;">page tab</td>
+      <td class="support">page tab</td>
+      <td class="support">page tab</td>
+      <td class="support">page tab</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tablist</td>
+      <td style="vertical-align: top; font-weight: bold;">page tab list</td>
+      <td class="support">page tab list</td>
+      <td class="support">page tab list</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tabpanel</td>
+      <td style="vertical-align: top; font-weight: bold;">property page</td>
+      <td class="partialsupport">pane</td>
+      <td class="support">property page</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">textbox</td>
+      <td style="vertical-align: top; font-weight: bold;">editable text</td>
+      <td class="support">editable text</td>
+      <td class="support">editable text</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">timer</td>
+      <td style="vertical-align: top; font-weight: bold;">timer</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">toolbar</td>
+      <td style="vertical-align: top; font-weight: bold;">tool bar</td>
+      <td class="support">tool bar</td>
+      <td class="support">tool bar</td>
+      <td class="support">tool bar</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tooltip</td>
+      <td style="vertical-align: top; font-weight: bold;">tool tip</td>
+      <td class="support">tool tip</td>
+      <td class="support">tool tip</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tree</td>
+      <td style="vertical-align: top; font-weight: bold;">outline</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">treegrid</td>
+      <td style="vertical-align: top; font-weight: bold;">outline</td>
+      <td class="nosupport">cell</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="nosupport">table</td>
+      <td class="nosupport">table</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">treeitem</td>
+      <td style="vertical-align: top; font-weight: bold;">outline item</td>
+      <td class="support">outline item</td>
+      <td class="support">outline item</td>
+      <td class="partialsupport">list item</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">client</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Legend</span></td>
+      <td class="support">correct</td>
+      <td class="nosupport">incorrect</td>
+      <td class="partialsupport">partial/unsure</td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Roles &amp; Accessibility Probe</h2>
+<p>
+These tests are identical to those performed with Inspect 32, but here Accessibility Probe is used to confirm the results displayed by Inspect 32.  Accessibility Probe is available <a href="http://www.eclipse.org/actf/downloads/tools/accprobe/index.php">here</a>.  According to Accessibility Probe:
+</p>
+<ul>
+<li>IE 8.0.6 exposes 40 role values via MSAA</li>
+<li>Firefox 3.6.3 exposes 45 role values via MSAA</li>
+<li>Opera 10.53 exposes 22 role values via MSAA</li>
+<li>Chrome exposes 0 role values via MSAA</li>
+<li>Safari 5.0 exposes 4 role values via MSAA</li>
+</ul>
+<p>
+The only difference here is Chrome, but as the reported role for every case in Chrome is &quot;grouping&quot;, this is likely due to an incompatibility of the Chrome browser with Accessibility Probe.  Otherwise, the reported roles in Accessibility Probe confirm those displayed by Inspect 32.
+</p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">ARIA Role</td>
+      <td style="vertical-align: top; font-weight: bold;">Expected MSAA Role</td>
+      <td style="vertical-align: top; font-weight: bold;">IE 8.0.6 Reported Role</td>
+      <td style="vertical-align: top; font-weight: bold;">Firefox 3.6.3 Reported Role</td>
+      <td style="vertical-align: top; font-weight: bold;">Opera 10.53 Reported Role</td>
+      <td style="vertical-align: top; font-weight: bold;">Chrome 5.0.375.55 Reported Role</td>
+      <td style="vertical-align: top; font-weight: bold;">Safari 5.0 Reported Role</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">alert</td>
+      <td style="vertical-align: top; font-weight: bold;">alert</td>
+      <td class="support">alert</td>
+      <td class="support">alert</td>
+      <td class="support">alert</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">alertdialog</td>
+      <td style="vertical-align: top; font-weight: bold;">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">application</td>
+      <td style="vertical-align: top; font-weight: bold;">application</td>
+      <td class="partialsupport">pane</td>
+      <td class="support">application</td>
+      <td class="support">application</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">article</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="partialsupport">document</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">banner</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">cell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">button</td>
+      <td style="vertical-align: top; font-weight: bold;">push button</td>
+      <td class="support">pushButton</td>
+      <td class="support">pushButton</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">checkbox</td>
+      <td style="vertical-align: top; font-weight: bold;">check box</td>
+      <td class="support">checkBox</td>
+      <td class="support">checkBox</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">columnheader</td>
+      <td style="vertical-align: top; font-weight: bold;">column header</td>
+      <td class="support">tableColumnHeader</td>
+      <td class="support">tableColumnHeader</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">combobox</td>
+      <td style="vertical-align: top; font-weight: bold;">combo box</td>
+      <td class="support">comboBox</td>
+      <td class="support">comboBox</td>
+      <td class="support">comboBox</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">complementary</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">contentinfo</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">definition</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">dialog</td>
+      <td style="vertical-align: top; font-weight: bold;">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="support">dialog</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">directory</td>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td class="support">list</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">&lt;null&gt;</td>
+      <td class="nosupport">grouping</td>
+      <td class="support">list</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">document</td>
+      <td style="vertical-align: top; font-weight: bold;">client</td>
+      <td class="support">clientArea</td>
+      <td class="support">document</td>
+      <td class="nosupport">&lt;null&gt;</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">grid</td>
+      <td style="vertical-align: top; font-weight: bold;">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+      <td class="support">table</td>
+      <td class="nosupport">grouping</td>
+      <td class="support">table</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">gridcell</td>
+      <td style="vertical-align: top; font-weight: bold;">cell</td>
+      <td class="support">tableCell</td>
+      <td class="support">tableCell</td>
+      <td class="support">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">group</td>
+      <td style="vertical-align: top; font-weight: bold;">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">heading</td>
+      <td style="vertical-align: top; font-weight: bold;">text? heading?</td>
+      <td class="support">text</td>
+      <td class="support">heading</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">img</td>
+      <td style="vertical-align: top; font-weight: bold;">graphic</td>
+      <td class="support">graphic</td>
+      <td class="support">graphic</td>
+      <td class="support">graphic</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">label</td>
+      <td style="vertical-align: top; font-weight: bold;">text</td>
+      <td class="nosupport">tableCell</td>
+      <td class="support">staticText</td>
+      <td class="support">staticText</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">link</td>
+      <td style="vertical-align: top; font-weight: bold;">link</td>
+      <td class="support">link</td>
+      <td class="support">link</td>
+      <td class="support">link</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="nosupport">grouping</td>
+      <td class="support">list</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">listbox</td>
+      <td style="vertical-align: top; font-weight: bold;">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="support">list</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">listitem</td>
+      <td style="vertical-align: top; font-weight: bold;">list item</td>
+      <td class="support">listItem</td>
+      <td class="support">listItem</td>
+      <td class="support">listItem</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">log</td>
+      <td style="vertical-align: top; font-weight: bold;">log?</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">&lt;null&gt;</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">main</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">marquee</td>
+      <td style="vertical-align: top; font-weight: bold;">animation? marquee?</td>
+      <td class="support">animation</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">math</td>
+      <td style="vertical-align: top; font-weight: bold;">equation?</td>
+      <td class="nosupport">tableCell</td>
+      <td class="support">equation</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menu</td>
+      <td style="vertical-align: top; font-weight: bold;">pop up menu</td>
+      <td class="support">menuPopup</td>
+      <td class="support">menuPopup</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menubar</td>
+      <td style="vertical-align: top; font-weight: bold;">menu bar</td>
+      <td class="support">menuBar</td>
+      <td class="support">menuBar</td>
+      <td class="support">menuBar</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitem</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menuItem</td>
+      <td class="support">menuItem</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitemcheckbox</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menuItem</td>
+      <td class="support">menuItem</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">menuitemradio</td>
+      <td style="vertical-align: top; font-weight: bold;">menu item</td>
+      <td class="support">menuItem</td>
+      <td class="support">menuItem</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">navigation</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">note</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">option</td>
+      <td style="vertical-align: top; font-weight: bold;">list item</td>
+      <td class="support">listItem</td>
+      <td class="support">listItem</td>
+      <td class="support">listItem</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">presentation</td>
+      <td style="vertical-align: top; font-weight: bold;">no object exposed</td>
+      <td class="nosupport">table</td>
+      <td class="support">presentation</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">progressbar</td>
+      <td style="vertical-align: top; font-weight: bold;">progress bar</td>
+      <td class="support">progressBar</td>
+      <td class="support">progressBar</td>
+      <td class="support">progressBar</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">radio</td>
+      <td style="vertical-align: top; font-weight: bold;">radio button</td>
+      <td class="support">radioButton</td>
+      <td class="support">radioButton</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">radiogroup</td>
+      <td style="vertical-align: top; font-weight: bold;">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="support">grouping</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">row</td>
+      <td style="vertical-align: top; font-weight: bold;">row</td>
+      <td class="nosupport">tableCell</td>
+      <td class="support">row</td>
+      <td class="nosupport">listItem</td>
+      <td class="nosupport">grouping</td>
+      <td class="support">row</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">region</td>
+      <td style="vertical-align: top; font-weight: bold;">pane?</td>
+      <td class="partialsupport">pane</td>
+      <td class="partialsupport">grouping</td>
+      <td class="nosupport">&lt;null&gt;</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">rowheader</td>
+      <td style="vertical-align: top; font-weight: bold;">row header</td>
+      <td class="support">tableRowHeader</td>
+      <td class="support">tableRowHeader</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">search</td>
+      <td style="vertical-align: top; font-weight: bold;">None</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">separator</td>
+      <td style="vertical-align: top; font-weight: bold;">separator</td>
+      <td class="support">separator</td>
+      <td class="support">separator</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">slider</td>
+      <td style="vertical-align: top; font-weight: bold;">slider</td>
+      <td class="support">slider</td>
+      <td class="support">slider</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">spinbutton</td>
+      <td style="vertical-align: top; font-weight: bold;">spin box</td>
+      <td class="support">spinBox</td>
+      <td class="support">spinButton</td>
+      <td class="nosupport">progressBar</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">status</td>
+      <td style="vertical-align: top; font-weight: bold;">status bar</td>
+      <td class="support">statusBar</td>
+      <td class="support">statusBar</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tab</td>
+      <td style="vertical-align: top; font-weight: bold;">page tab</td>
+      <td class="support">pageTab</td>
+      <td class="support">pageTab</td>
+      <td class="support">pageTab</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tablist</td>
+      <td style="vertical-align: top; font-weight: bold;">page tab list</td>
+      <td class="support">pageTabList</td>
+      <td class="support">pageTabList</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tabpanel</td>
+      <td style="vertical-align: top; font-weight: bold;">property page</td>
+      <td class="partialsupport">pane</td>
+      <td class="support">propertyPage</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">textbox</td>
+      <td style="vertical-align: top; font-weight: bold;">editable text</td>
+      <td class="support">text</td>
+      <td class="support">text</td>
+      <td class="nosupport">row</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">timer</td>
+      <td style="vertical-align: top; font-weight: bold;">timer</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">toolbar</td>
+      <td style="vertical-align: top; font-weight: bold;">tool bar</td>
+      <td class="support">toolBar</td>
+      <td class="support">toolBar</td>
+      <td class="support">toolBar</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tooltip</td>
+      <td style="vertical-align: top; font-weight: bold;">tool tip</td>
+      <td class="support">toolTip</td>
+      <td class="support">toolTip</td>
+      <td class="nosupport">tableCell</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">tree</td>
+      <td style="vertical-align: top; font-weight: bold;">outline</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">treegrid</td>
+      <td style="vertical-align: top; font-weight: bold;">outline</td>
+      <td class="nosupport">tableCell</td>
+      <td class="support">outline</td>
+      <td class="support">outline</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">table</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;">treeitem</td>
+      <td style="vertical-align: top; font-weight: bold;">outline item</td>
+      <td class="support">outlineItem</td>
+      <td class="support">outlineItem</td>
+      <td class="partialsupport">listItem</td>
+      <td class="nosupport">grouping</td>
+      <td class="nosupport">clientArea</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Legend</span></td>
+      <td class="support">correct</td>
+      <td class="nosupport">incorrect</td>
+      <td class="partialsupport">partial/unsure</td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>States &amp; Inspect 32</h2>
+<p>
+I was unable to find published tests of the reported ARIA states for specific broswers or a list of expected states.  For these tests, I considered a reported state to be correct if the name of the state was displayed by Inspect 32 in at least one of the test item's possible states.  For example, the &quot;aria-checked&quot; state test item could be either checked or unchecked; while checked, Inspect 32 reports the state as &quot;checked, marqueed, focusable&quot; so the reported state is considered correct even though the unchecked item does not specifically report that it is not checked.  This decision was made because no browser reported both positive and negative states of a particular test item, with the exception of the expanded/collapsed state.  In all other cases, only the positive (checked, pressed, selected) state was reported as such.  
+</p>
+<p>
+Test examples were taken from the <a href="http://test.cita.illinois.edu/aria/states.php">Illinois Center for Information Technology and Web Accessibility</a> and the <a href="http://wiki.codetalks.org/wiki/index.php/Set_of_ARIA_Test_Cases">Codetalks wiki</a>. 
+</p><p>
+Methodology:
+</p>
+<ul>
+<li>Test examples for &quot;aria-checked&quot;, &quot;aria-expanded&quot;, &quot;aria-pressed&quot;, and &quot;aria-selected&quot; are listed at the above links.</li>
+<li>Each example provides keyboard shortcuts to navigate the page.  With Inspect 32 running, use the keyboard to navigate through the example.  Inspect 32 will display the state of the test item, though after changing a test item (checking or unchecking a box, for example), focused must be moved to a different test item and then moved back to the original item, generally by using tab/shift-tab or the arrow keys, for Inspect 32 to display the new state.</li>
+<li>Keyboard shortcuts work for all browsers except Internet Explorer.  The mouse can be used in IE to select test items, and Inspect 32 will display the current state of those items, but IE will not allow the state to be changed with the mouse.  A checked box cannot be unchecked, for example.  </li>
+<li>Firefox and IE will display the state of a button or checkbox if the cursor is hovered over the item, but the other browsers will not.</li>
+</ul>
+<p>
+Note:
+</p>
+<ul>
+<li>No test example is provided for &quot;aria-busy&quot;.  Examples are given for &quot;aria-disabled&quot;, &quot;aria-hidden&quot;, and &quot;aria-invalid&quot;, but I was unable to determine how these examples were to be used to test these states.  Inspect 32 does not display any of these states for the given examples.  As well, Internet Explorer does not render the &quot;aria-selected&quot; example correctly, so this state could not be tested in IE.</li>
+</ul>
+<p>
+Of the five states that were tested (&quot;aria-checked&quot;, &quot;aria-expanded&quot;, &quot;aria-grabbed&quot;, &quot;aria-pressed&quot;, and &quot;aria-selected&quot;), the summary is as follows:
+</p>
+<ul>
+<li>IE 8.0.6 exposes 3 state values via MSAA</li>
+<li>Firefox 3.6.3 exposes 4 state values via MSAA</li>
+<li>Opera 10.53 exposes 0 state values via MSAA</li>
+<li>Chrome exposes 2 state values via MSAA</li>
+<li>Safari 5.0 exposes 3 state values via MSAA</li>
+</ul>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">ARIA State</span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">Specific State</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Firefox 3.6.3 Reported State</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">IE 8.0.6001.18702 Reported State</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Opera 10.53 Reported State</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Chrome 5.0.375.70 Reported State</span></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Safari 5.0 Reported State</span></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">busy</span></td>
+      <td style="vertical-align: top;"><br></td>
+      <td class="notest">unable to test</td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">checked</span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">checked</span></td>
+      <td class="support">checked, marqueed, focusable</td>
+      <td class="support">focused, checked, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="support">focused, checked, read only, focusable</td>
+      <td class="support">read only, checked, hot tracked, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;"></span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">unchecked</span></td>
+      <td class="support">marqueed, focusable</td>
+      <td class="support">focused, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="support">focused, read only, focusable</td>
+      <td class="support">read only, hot tracked, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">disabled</span></td>
+      <td style="vertical-align: top;"><br></td>
+      <td class="notest">unable to test</td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">expanded</span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">expanded</span></td>
+      <td class="support">expanded, focusable, selectable</td>
+      <td class="support">focused, expanded, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="nosupport">focused, read only, focusable</td>
+      <td class="nosupport">focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">collapsed</span></td>
+      <td class="support">collapsed, focusable, selectable</td>
+      <td class="support">focused, collapsed, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="nosupport">focused, read only, focusable</td>
+      <td class="nosupport">focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">grabbed</span></td>
+      <td style="vertical-align: top;"><br></td>
+      <td class="nosupport">focused, floating, focusable</td>
+      <td class="nosupport">focused, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="nosupport">focused, read only, focusable</td>
+      <td class="nosupport">focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">hidden</span></td>
+      <td style="vertical-align: top;"><br></td>
+      <td class="notest">unable to test</td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">invalid</span></td>
+      <td style="vertical-align: top;"><br></td>
+      <td class="notest">unable to test</td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">pressed</span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">pressed</span></td>
+      <td class="support">pressed, floating, marqueed, focusable</td>
+      <td class="support">focused, pressed, focusable</td>
+      <td class="nosupport">focused</td>
+      <td class="support">focused, pressed, read only, focusable</td>
+      <td class="support">focused, pressed, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">unpressed</span></td>
+      <td class="support">floating, maruqeed, focusable</td>
+      <td class="support">focused, focusable</td>
+      <td class="nosupport">hot tracked, focusable</td>
+      <td class="support">focused, read only, focusable</td>
+      <td class="support">focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">selected</span></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">selected</span></td>
+      <td class="support">selected, focused, focusable, selectable</td>
+      <td class="error">IE is unresponsive; cannot move focus to cells in table</td>
+      <td class="partialsupport">selectable</td>
+      <td class="nosupport">focused, read only, focusable</td>
+      <td class="support">selected, focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">unselected</span></td>
+      <td class="support">focused, focusable, selectable</td>
+      <td class="error"></td>
+      <td class="partialsupport">selectable</td>
+      <td class="nosupport">focused, read only, focusable</td>
+      <td class="support">focused, read only, focusable</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Legend</span></td>
+      <td class="support">correct</td>
+      <td class="nosupport">incorrect</td>
+      <td class="partialsupport">partial/unsure</td>
+      <td class="error">browser error/incompatibility</td>
+      <td class="notest">unable to find test example</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Events &amp; AccEvent</h2>
+<p>
+Similarly to states, I was unable to find published tests of the reported MSAA events fired for ARIA states.  For these tests, I matched ARIA states with MSAA events as presented in the W3C's <a href="http://www.w3.org/TR/wai-aria-implementation/#mapping_events">WAI-ARIA User Agent Implementation Guide</a>, and used the ARIA state examples from the <a href="http://test.cita.illinois.edu/aria/states.php">Illinois Center for Information Technology and Web Accessibility</a> and the <a href="http://wiki.codetalks.org/wiki/index.php/Set_of_ARIA_Test_Cases">Codetalks wiki</a> along with AccEvent software to monitor the events fired for each change of ARIA state.  The AccEvent software used to conduct these tests available <a href="http://www.microsoft.com/downloads/details.aspx?familyid=3755582a-a707-460a-bf21-1373316e13f0&amp;displaylang=en">here</a>. 
+</p><p>
+Methodology:
+</p>
+<ul>
+<li>By default AccEvent lists far more events than those that are being tested here; to limit the displayed events only to those associated with the ARIA states being tested, go to AccEvent's Options&gt;Settings menu and choose only OBJ_HIDE, OBJ_SHOW, OBJ_SELECTION, and OBJ_STATECHANGE from the Events menu.</li>
+<li>Examples for all states except &quot;aria-hidden&quot; are taken from the <a href="http://test.cita.illinois.edu/aria/states.php">Illinois Center for Information Technology and Web Accessibility</a>.  The keyboard or mouse can be used for these examples.</li>
+<li>The test example for &quot;aria-hidden&quot; is taken from the <a href="http://wiki.codetalks.org/wiki/index.php/Set_of_ARIA_Test_Cases">Codetalks wiki</a>.  In this case, the mouse must be used to hover over the link provided in the example.</li>
+<li>When the state of a test item is changed, AccEvent will display the event that is fired when that state change occurs.</li>
+</ul>
+<p>
+Note:
+</p>
+<ul>
+<li>None of the test examples work correctly on Internet Explorer, so these events could not be tested in IE.  IE differs from Opera, Chrome, and Safari, for which I've listed no reported events, in that the latter three browsers will allow the states of the test items to be changed but will not display any associated events in AccEvent, while IE will not allow the states of the test items to be changed at all. </li>
+<li>I was unable to find test examples for &quot;aria-disabled&quot; and &quot;aria-readonly&quot;, so these states were not tested.</li>
+<li>These tests are only for MSAA events.  IAccessible 2 and UIA events were not tested.</li>
+<li>The <a href="http://www.w3.org/TR/wai-aria-implementation/#mapping_events">W3C</a> lists other events, including MSAA, IA2, and UIA, that are associated with document and node visibility changes, selection, and menus, but these events were not tested.  Only events that are matched with ARIA states or properties are included in this document.</li>
+</ul>
+<p>
+Of the four state-event pairs that were tested (&quot;aria-checked&quot;, &quot;aria-expanded&quot;, &quot;aria-grabbed&quot;, and &quot;aria-hidden&quot;), the summary is as follows:
+</p>
+<ul>
+<li>IE 8.0.6 exposes 0 event values via MSAA</li>
+<li>Firefox 3.6.3 exposes 2 event values via MSAA</li>
+<li>Opera 10.53 exposes 0 event values via MSAA</li>
+<li>Chrome exposes 0 event values via MSAA</li>
+<li>Safari 5.0 exposes 0 event values via MSAA</li>
+</ul>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">ARIA State</span></td>
+      <td style="vertical-align: top; font-weight: bold;">Expected MSAA Event(s)</td>
+      <td style="vertical-align: top; font-weight: bold;">Firefox 3.6.3 Reported Event</td>
+      <td style="vertical-align: top; font-weight: bold;">IE 8.0.6001.18702 Reported Event</td>
+      <td style="vertical-align: top; font-weight: bold;">Opera 10.53 Reported Event</td>
+      <td style="vertical-align: top; font-weight: bold;">Chrome 5.0.375.70 Reported Event</td>
+      <td style="vertical-align: top; font-weight: bold;">Safari 5.0 Reported Event</td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">checked</td>
+      <td style="vertical-align: top;">STATECHANGE</td>
+      <td class="support"><span style="font-weight: normal;">STATECHANGE</span></td>
+      <td class="error"><span style="font-weight: normal;">IE unresponsive on test example</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">disabled</td>
+      <td style="vertical-align: top;">STATECHANGE</td>
+      <td class="notest"><span style="font-weight: normal;">unable to test</span></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">expanded</td>
+      <td style="vertical-align: top;">STATECHANGE</td>
+      <td class="support"><span style="font-weight: normal;">STATECHANGE, HIDE, SHOW</span></td>
+      <td style="vertical-align: top; font-weight: normal; background-color: rgb(255, 204, 102);">IE unresponsive on test example</td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">grabbed</td>
+      <td style="vertical-align: top;">SELECTION</td>
+      <td class="nosupport"><span style="font-weight: normal;">STATECHANGE, HIDE, SHOW</span></td>
+      <td style="vertical-align: top; font-weight: normal; background-color: rgb(255, 204, 102);">IE unresponsive on test example</td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">hidden</td>
+      <td style="vertical-align: top;">SELECTION, HIDE, SHOW</td>
+      <td class="partialsupport"><span style="font-weight: normal;">HIDE, SHOW</span></td>
+      <td style="vertical-align: top; font-weight: normal; background-color: rgb(255, 204, 102);">IE unresponsive on test example</td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+      <td class="partialsupport"><span style="font-weight: normal;">HIDE, SHOW</span></td>
+      <td class="nosupport"><span style="font-weight: normal;">none</span></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td style="vertical-align: top;">readonly</td>
+      <td style="vertical-align: top;">STATECHANGE</td>
+      <td class="notest"><span style="font-weight: normal;">unable to test</span></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+      <td class="notest"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><br></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br></td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">Legend</span></td>
+      <td class="support">correct</td>
+      <td class="nosupport">incorrect</td>
+      <td class="partialsupport">partial/unsure</td>
+      <td class="error">browser error</td>
+      <td class="notest">unable to find test example</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+</div>
+</div>
+-->
+
+<br>
+</body>
+</html>
