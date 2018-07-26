@@ -13,12 +13,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t ${env.DOCKER_IMAGE}'
+        sh "docker build -t ${env.DOCKER_IMAGE}"
       }
     }
     stage('Deliver') {
       steps {
-        sh 'docker push ${env.DOCKER_IMAGE}'
+        sh "docker push ${env.DOCKER_IMAGE}"
       }
     }
     stage('Deploy') {
