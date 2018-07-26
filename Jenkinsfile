@@ -2,7 +2,7 @@ pipeline {
   agent { label "docker" }
 
   environment {
-    DOCKER_IMAGE = "docker.io/inclusivedesign/website-aegis"
+    DOCKER_IMAGE = "inclusivedesign/website-aegis"
   }
 
   options {
