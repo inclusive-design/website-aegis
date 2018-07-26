@@ -2,7 +2,7 @@ pipeline {
   agent { label "docker" }
 
   environment {
-    DOCKER_IMAGE = '${env.JOB_NAME}'
+    DOCKER_IMAGE = "${env.JOB_NAME}"
   }
 
   options {
