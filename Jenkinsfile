@@ -25,7 +25,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'Not implemented'
+        sh 'echo Not implemented'
       }
     }
   }
