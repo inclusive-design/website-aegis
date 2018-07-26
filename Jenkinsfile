@@ -2,7 +2,7 @@ pipeline {
   agent { label "docker" }
 
   environment {
-    DOCKER_IMAGE = "${env.JOB_NAME}"
+    DOCKER_IMAGE = "docker.io/inclusivedesign/website-aegis"
   }
 
   options {
@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh "docker build -t ${env.DOCKER_IMAGE}"
+        sh "docker build -t ${env.DOCKER_IMAGE} ."
       }
     }
     stage('Deliver') {
