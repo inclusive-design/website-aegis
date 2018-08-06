@@ -2,7 +2,7 @@ pipeline {
   agent { label "docker" }
 
   environment {
-    DOCKER_IMAGE = "website-aegis"
+    DOCKER_IMAGE = "registry.incd.ca/website-aegis"
   }
 
   options {
