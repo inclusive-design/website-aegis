@@ -2,7 +2,7 @@ pipeline {
   agent { label "docker" }
 
   environment {
-    DOCKER_IMAGE = "registry.incd.ca/website-aegis"
+    DOCKER_IMAGE = "website-aegis"
   }
 
   options {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Deliver') {
       steps {
-        withDockerRegistry([credentialsId: 'registry-incd-ca-credentials', url: '']) {
+        withDockerRegistry([credentialsId: 'registry-incd-ca-credentials', url: 'https://registry.incd.ca']) {
           sh "docker push ${env.DOCKER_IMAGE}"
         }
       }
